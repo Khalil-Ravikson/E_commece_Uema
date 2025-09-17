@@ -1,0 +1,28 @@
+[{
+        "id": 1,
+        "name": "Smartphone Premium",
+        "price": 2499.99,
+        "description": "O mais avançado smartphone do mercado com câmera de 108MP.",
+        "image": "http://static.photos/technology/640x360/1"
+    },
+    {
+        "id": 2,
+        "name": "Notebook Ultrafino",
+        "price": 4299.99,
+        "description": "Notebook com processador de última geração e tela 4K.",
+        "image": "http://static.photos/technology/640x360/2"
+    },
+    {
+        "id": 3,
+        "name": "Fones de Ouvido Sem Fio",
+        "price": 599.99,
+        "description": "Cancelamento de ruído ativo e 30 horas de bateria.",
+        "image": "http://static.photos/technology/640x360/3"
+    },
+    {
+        "id": 4,
+        "name": "Smartwatch Pro",
+        "price": 1299.99,
+        "description": "Monitoramento de saúde avançado e resistente à água.",
+        "image": "http://static.photos/technology/640x360/4"
+    }]
