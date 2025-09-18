@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+    <section id="home" class="hero-section py-16 md:py-24 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">Bem-vindo à ShopNova</h1>
+            <p class="text-lg md:text-xl text-white mb-10 max-w-3xl mx-auto">Descubra produtos incríveis com os melhores preços.</p>
+            <a href="#products" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100">Compre Agora</a>
+        </div>
+    </section>
+
+    <section id="products" class="py-16 px-4 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Nossos Produtos</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                
+                {% for product in products %}
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-bold text-lg mb-2">{{ product.name }}</h3>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">{{ product.description|truncatewords:10 }}</p>
+                            <div class="flex justify-between items-center mt-auto pt-4">
+                                <span class="font-bold text-lg">R$ {{ product.price|floatformat:2 }}</span>
+                                <form action="{% url 'add_to_cart' product.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Adicionar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="col-span-full text-center text-gray-500">Nenhum produto cadastrado no momento.</p>
+                {% endfor %}
+                </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="About ShopNova" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6">Sobre a ShopNova</h2>
+                    <p class="text-gray-600 mb-4">Fundada em 2025, a ShopNova surgiu com a missão de oferecer produtos de qualidade com preços acessíveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,25 @@
+# Arquivo .gitignore para projetos Django
+
+# Arquivos de Ambiente
+.env
+.env.*
+
+# Banco de Dados
+*.sqlite3
+db.sqlite3
+
+# Arquivos Gerados pelo Python
+__pycache__/
+*.pyc
+
+# Ambientes Virtuais
+venv/
+env/
+.venv/
+
+# Arquivos de Mídia (Uploads de Usuário)
+/media/products/imagesT200.jpeg
+/products/imagesT200.jpeg
+# Arquivos de IDEs (opcional, mas bom ter)
+.idea/
+.vscode/
