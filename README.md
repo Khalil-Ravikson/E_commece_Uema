@@ -99,24 +99,42 @@ Este método é mais simples e garante que o ambiente seja idêntico em qualquer
 ## Atualizações Futuras (Roadmap Profissional)
 
 Este projeto tem uma base sólida. Os próximos passos para torná-lo uma aplicação de nível profissional incluem:
+---
 
-* **Tarefas em Segundo Plano com Celery:**
-    * Implementar o envio de e-mails de confirmação de pedido de forma assíncrona para não atrasar a resposta ao usuário.
-    * Usar um Message Broker como o Redis.
+## Roadmap Profissional e Próximos Passos
 
-* **Integração com APIs Externas:**
-    * **Pagamentos:** Integrar um gateway de pagamento (Mercado Pago, PagSeguro, Stripe) para processar transações reais.
-    * **Frete:** Conectar com a API dos Correios para cálculo de frete em tempo real.
-    * **Endereços:** Usar uma API como a ViaCEP para autocompletar o endereço a partir do CEP.
+Este projeto possui uma base sólida. Os próximos passos para transformá-lo em uma aplicação de nível profissional incluem:
 
-* **Testes Automatizados:**
-    * Escrever testes unitários e de integração com o framework de testes do Django para garantir a estabilidade do código e evitar regressões.
+### 1. Tarefas em Segundo Plano com Celery
+- **Objetivo:** Melhorar a performance e a experiência do usuário em tarefas lentas.
+- **Ações:**
+  - Implementar o envio de e-mails de confirmação de pedido de forma assíncrona (em segundo plano) usando **Celery** e um Message Broker como o **Redis**. Isso faz com que o usuário não precise esperar o envio do e-mail para ver a página de confirmação.
+  - Usar para outras tarefas demoradas, como processamento de imagens ou geração de relatórios.
 
-* **Deploy em Produção:**
-    * Configurar a aplicação para rodar em um servidor de produção com Gunicorn e Nginx.
-    * Usar um serviço de nuvem (Heroku, Render, DigitalOcean) para a hospedagem.
+### 2. Integração com APIs Externas
+- **Objetivo:** Adicionar funcionalidades do mundo real que dependem de serviços de terceiros.
+- **Ações:**
+  - **Pagamentos:** Integrar um gateway de pagamento (ex: **Mercado Pago, PagSeguro, Stripe**) para processar transações com Cartão de Crédito e PIX.
+  - **Frete:** Conectar com a API dos **Correios** para cálculo de frete em tempo real baseado no CEP.
+  - **Endereços:** Usar uma API como a **ViaCEP** no formulário de checkout para autocompletar o endereço a partir do CEP digitado pelo usuário.
 
-* **Performance e Otimização:**
-    * Implementar cache com Redis para consultas frequentes.
-    * Otimizar queries do banco de dados com `select_related` e `prefetch_related`.
-    * Servir arquivos estáticos e de mídia através de um serviço de CDN (como AWS S3).
+### 3. Melhorias na Experiência do Usuário (UX)
+- **Objetivo:** Tornar o site mais dinâmico e fácil de usar.
+- **Ações:**
+  - **Atualizações sem Recarregar a Página (AJAX):** Reintroduzir a lógica de atualizar o carrinho sem recarregar a página, usando uma biblioteca como **HTMX** (para manter a lógica no backend) ou **JavaScript com a API Fetch** (para mais controle no frontend).
+  - **Busca de Produtos:** Implementar uma barra de busca funcional.
+  - **Filtros e Paginação:** Adicionar filtros para produtos (por categoria, preço) e paginação na página de produtos.
+
+### 4. Deploy em Produção
+- **Objetivo:** Colocar a aplicação no ar de forma segura e escalável.
+- **Ações:**
+  - Configurar a aplicação para rodar em um servidor de produção com **Gunicorn** (servidor de aplicação) e **Nginx** (servidor web).
+  - Empacotar toda a aplicação em containers **Docker** para garantir consistência entre os ambientes.
+  - Hospedar em um serviço de nuvem como **Render.com, Heroku, ou DigitalOcean**.
+
+### 5. Ferramentas de Desenvolvimento e Testes
+- **Objetivo:** Aumentar a qualidade e a confiabilidade do código.
+- **Ações:**
+  - **Testes Automatizados:** Escrever testes unitários e de integração com o framework de testes do Django para validar as funcionalidades do carrinho e do checkout.
+  - **Tunelamento com Ngrok:** Usar o **Ngrok** para criar um túnel seguro para o seu servidor de desenvolvimento local. Isso é essencial para testar serviços que precisam de um webhook (uma URL pública), como gateways de pagamento, que precisam notificar seu site de que um pagamento foi aprovado.
+  - **Django Debug Toolbar:** Instalar e configurar esta ferramenta para analisar a performance, as queries do banco de dados e outras informações vitais durante o desenvolvimento.
